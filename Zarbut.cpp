@@ -2,7 +2,8 @@
 #include <clocale>
 #include <ctime>
 #include <string>
-#include <windows.h>     //required for Sleep()
+#include <thread>		//	required for sleep
+#include <chrono>		//	+ required for sleep
 
 using namespace std;
 
@@ -40,7 +41,7 @@ int main() {
 	cout << " | " << char(4) << " Zar atmak için Enter tuþu kullanýlýr. 1000 TL ile oyuna     | " << endl;
 	cout << " |   girmek için Enter tuþuna basabilirsiniz.                    |" << endl;
 	cout << "  ---------------------------------------------------------------" << endl;
-	cin.get();
+	cout << "\033[2J\033[1;1H";
 
 
 
@@ -52,7 +53,7 @@ int main() {
 	for (zaratisi = 150; zaratisi >= 0; zaratisi--) {
 		//cout << "\033c" << endl;
 		//cout << string(50, '\n');
-		system("cls");
+		cout << "\033[2J\033[1;1H";
 		//clrscr();
 		//cout << "Flushing the output stream." << flush;
 		//cout << "\033[2J\033[1;1H";
@@ -81,18 +82,18 @@ int main() {
 		// Ancak Oyun Ýçin Yavaþ Geldiðinden 2 Kat Hýzlandýrýldý
 		int slip = 150;
 		cout << endl << "  " << char(5) << " Zar sallanýyor";
-		Sleep(slip); Sleep(slip);
-		Sleep(slip); cout << " "; Sleep(slip); cout << ".";
-		Sleep(slip); cout << " "; Sleep(slip); cout << ".";
-		Sleep(slip); cout << " "; Sleep(slip); cout << ".";
-		Sleep(slip); Sleep(slip); Sleep(slip);
-		Sleep(slip); cout << " Atýlacak";
-		Sleep(slip);
-		Sleep(slip); cout << " "; Sleep(slip); cout << ".";
-		Sleep(slip); cout << " "; Sleep(slip); cout << "."; Sleep(slip); cout << " ";
-		Sleep(slip); Sleep(slip);
+		this_thread::sleep_for(chrono::milliseconds(slip*2));
+		this_thread::sleep_for(chrono::milliseconds(slip)); cout << " "; this_thread::sleep_for(chrono::milliseconds(slip)); cout << ".";
+		this_thread::sleep_for(chrono::milliseconds(slip)); cout << " "; this_thread::sleep_for(chrono::milliseconds(slip)); cout << ".";
+		this_thread::sleep_for(chrono::milliseconds(slip)); cout << " "; this_thread::sleep_for(chrono::milliseconds(slip)); cout << ".";
+		this_thread::sleep_for(chrono::milliseconds(slip*3));
+		this_thread::sleep_for(chrono::milliseconds(slip)); cout << " Atýlacak";
+		this_thread::sleep_for(chrono::milliseconds(slip));
+		this_thread::sleep_for(chrono::milliseconds(slip)); cout << " "; this_thread::sleep_for(chrono::milliseconds(slip)); cout << ".";
+		this_thread::sleep_for(chrono::milliseconds(slip)); cout << " "; this_thread::sleep_for(chrono::milliseconds(slip)); cout << "."; this_thread::sleep_for(chrono::milliseconds(slip)); cout << " ";
+		this_thread::sleep_for(chrono::milliseconds(slip*2));
 		cout << "Atýldý!";
-		Sleep(slip);
+		this_thread::sleep_for(chrono::milliseconds(slip));
 		cout << endl << endl;
 
 
